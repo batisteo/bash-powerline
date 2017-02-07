@@ -98,7 +98,12 @@ __powerline() {
             local BG_EXIT="$BG_RED"
         fi
 
-        PS1="$BG_BASE1$FG_BASE3 \w $RESET"
+        function venv(){
+            test -n "$VIRTUAL_ENV" && echo "($(basename "$VIRTUAL_ENV"))"
+        }
+
+        PS1="$BG_YELLOW$FG_BASE3\$(venv)$RESET"
+        PS1+="$BG_BASE1$FG_BASE3 \w $RESET"
         PS1+="$BG_BLUE$FG_BASE3$(__git_info)$RESET"
         PS1+="$BG_EXIT$FG_BASE3 $PS_SYMBOL $RESET "
     }
